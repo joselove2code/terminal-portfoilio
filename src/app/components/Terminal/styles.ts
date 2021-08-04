@@ -11,7 +11,7 @@ export const Wrapper = styled.div`
 
 export const Content = styled.div`
   margin: auto;
-  color: var(--green);
+  color: var(--fontColor);
   font-family: var(--font);
   max-width: var(--maxWidth);
   padding-left: var(--marginX);

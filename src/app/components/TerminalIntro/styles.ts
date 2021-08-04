@@ -5,6 +5,6 @@ export const Wrapper = styled.p`
 
   ::selection {
     color: var(--backgroundColor);
-    background: var(--green);
+    background: var(--fontColor);
   }
 `;

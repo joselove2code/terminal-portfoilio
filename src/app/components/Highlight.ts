@@ -5,11 +5,11 @@ type Props = {
 };
 
 export const Hightlight = styled.span<Props>`
-  color: var(--cyan);
+  color: var(--highlightColor);
   font-weight: ${({ bold }) => bold ? 'bold' : 'normal' };
 
   ::selection {
     color: var(--backgroundColor);
-    background: var(--cyan);
+    background: var(--highlightColor);
   }
 `;

@@ -5,8 +5,8 @@ export const GlobalStyle = createGlobalStyle`
     --marginX: 15px;
     --fontSize: 16px;
     --marginTop: 15px;
-    --cyan: #3a96ddff;
-    --green: #16c60cff;
+    --highlightColor: #3a96ddff;
+    --fontColor: #16c60cff;
     --maxWidth: 1210px;
     --lineHeight: 20px;
     --backgroundColor: black;

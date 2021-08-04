@@ -27,6 +27,6 @@ export const Line = styled.div`
 
   ::selection {
     color: var(--backgroundColor);
-    background: var(--green);
+    background: var(--fontColor);
   }
 `;
