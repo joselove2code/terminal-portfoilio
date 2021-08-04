@@ -1,5 +1,10 @@
 import styled from 'styled-components';
 
+export const Wrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+`;
+
 export const Label = styled.span`
   margin-right: 5px;
 
@@ -9,24 +14,22 @@ export const Label = styled.span`
   }
 `;
 
-export const Input = styled.input`
-  width: 0;
-  border: 0;
-  outline: none;
-  background-color: transparent;
-`;
-
-export const Prompt = styled.span`
-  overflow-wrap: break-word;
+export const Char = styled.span`
+  position: relative;
+  line-height: var(--lineHeight);
 
   ::selection {
     color: var(--backgroundColor);
     background: var(--green);
   }
-`;
+  `;
 
 export const Caret = styled.span`
-  border-left: 1ch solid var(--green);
+  left: 0;
+  position: absolute;
+  color: var(--backgroundColor);
+  line-height: var(--lineHeight);
+  background-color: var(--green);
   animation: blink 1s steps(5, start) infinite;
 
   @keyframes blink {

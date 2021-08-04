@@ -1,41 +1,31 @@
-import React, { ChangeEvent, useState } from 'react'
+import React from 'react'
 import { Hightlight } from '../Highlight';
-import { Caret, Label, Input, Prompt } from './styles';
+import { Wrapper, Label, Char, Caret } from './styles';
 
-const TerminalPrompt: React.FC = () => {
-  let promptRef: HTMLInputElement | null = null;
-  const [text, setText] = useState<string>('');
+type Props = {
+  caret: number;
+  chars: string[];
+}
 
-  const setRef = (element: HTMLInputElement) => {
-    promptRef = element;
-    focusPrompt()
-  }
-
-  const focusPrompt = () => {
-    // promptRef?.focus();
-    console.log('focusPrompt', promptRef);
-  };
-
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setText(event.currentTarget.value);
-    console.log('changed', event.currentTarget.value);
-  };
-
-  return (
-    <div>
-      <Label>
-        <b>root@portfolio:</b><Hightlight>~$</Hightlight>
-      </Label>
-      <Input
-        ref={setRef}
-        onBlur={focusPrompt}
-        onLoad={focusPrompt}
-        onChange={handleChange}
-      />
-      <Prompt>{text}</Prompt>
-      <Caret></Caret>
-    </div>
-  );
-};
+const TerminalPrompt: React.FC<Props> = ({ chars, caret }) => (
+  <Wrapper>
+    <Label>
+      <b>root@portfolio:</b><Hightlight>~$</Hightlight>
+    </Label>
+    {chars.map((char, index) => (
+      <Char key={index}>
+        {char}
+        {caret === index &&
+          <Caret>{char}</Caret>
+        }
+      </Char>
+    ))}
+    <Char>
+      {caret === chars.length &&
+        <Caret>&nbsp;</Caret>
+      }
+    </Char>
+  </Wrapper>
+);;
 
 export default TerminalPrompt;
