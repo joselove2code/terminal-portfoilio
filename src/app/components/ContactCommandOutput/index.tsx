@@ -13,15 +13,15 @@ const ContactCommandOutput: React.FC = () => {
       url: 'mailto:joselove2code@gmail.com',
     },
     {
-      name: 'LinkedIn profile',
-      url: 'https://www.linkedin.com/in/jose-ignacio-cruz-moreira-7a6701106/',
-    },
-    {
-      name: 'Github profile',
+      name: 'Github Profile',
       url: 'https://github.com/joselove2code',
     },
     {
-      name: 'Twitter account',
+      name: 'LinkedIn Profile',
+      url: 'https://www.linkedin.com/in/jose-ignacio-cruz-moreira-7a6701106/',
+    },
+    {
+      name: 'Twitter Account',
       url: 'https://twitter.com/joselove2code',
     },
   ];

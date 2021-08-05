@@ -30,6 +30,10 @@ const SkillsCommandOutput: React.FC = () => {
           level: 10,
         },
         {
+          name: 'Design Patterns',
+          level: 9,
+        },
+        {
           name: 'Linux',
           level: 9,
         },
@@ -132,7 +136,7 @@ const SkillsCommandOutput: React.FC = () => {
   const getLevelStr = (level: number) => {    
     return '#'.repeat(10).split('').map((ch, index) => {
       return index >= level
-        ? ch
+        ? '.'
         : <Hightlight key={index}>{ch}</Hightlight>;
     });
   };
