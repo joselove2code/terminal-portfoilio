@@ -2,11 +2,12 @@ import React, { useEffect, useState } from 'react'
 import { Wrapper, Content } from './styles';
 import TerminalHeader from '../TerminalHeader';
 import TerminalIntro from '../TerminalIntro';
-import TerminalPrompt from '../TerminalPrompt';
+import TerminalLine from '../TerminalLine';
 
 enum Keys {
   End = 'End',
   Home = 'Home',
+  Enter = 'Enter',
   Delete = 'Delete',
   BackSpace = 'Backspace',
   ArrowLeft = 'ArrowLeft',
@@ -77,6 +78,12 @@ const Terminal: React.FC = () => {
       });
     };
 
+    const execCommand = () => {
+      const command = state.chars.join('');
+
+      console.log({ command });
+    };
+
     const handleKeyDown = ({ key }: KeyboardEvent) => {
       if (key === Keys.BackSpace)
         deletePrevChar()
@@ -93,6 +100,8 @@ const Terminal: React.FC = () => {
     const handleKeyPress = ({ key }: KeyboardEvent) => {
       if (key === Keys.Delete)
         deleteChar();
+      else if (key === Keys.Enter)
+        execCommand();
       else
         writeChar(key);
     };
@@ -111,7 +120,7 @@ const Terminal: React.FC = () => {
       <Content>
         <TerminalHeader />
         <TerminalIntro />
-        <TerminalPrompt chars={state.chars} caret={state.caret} />
+        <TerminalLine chars={state.chars} caret={state.caret} />
       </Content>
     </Wrapper>
   );
