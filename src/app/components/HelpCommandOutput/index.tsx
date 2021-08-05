@@ -30,10 +30,11 @@ const HelpCommandOutput: React.FC = () => {
   return (
     <Wrapper>
       <Intro>
-        Portfolio Terminal version 1.0.0 (x86_64 architecture) <br/>
+        Portfolio Terminal version 1.0.0 (x86_64 architecture)<br/>
         These interpreter commands are defined internally.
         Type <Hightlight>help</Hightlight> to see this list.
       </Intro>
+    
       {commands.map(({ command, description }) => (
         <CommandWrapper key={command}>
           <CommandLabel>
