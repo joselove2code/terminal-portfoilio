@@ -1,29 +1,32 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
+import { Key } from '../../types/Key';
 import { Wrapper, Content } from './styles';
 import TerminalHeader from '../TerminalHeader';
 import TerminalIntro from '../TerminalIntro';
 import TerminalLine from '../TerminalLine';
-
-enum Keys {
-  End = 'End',
-  Home = 'Home',
-  Enter = 'Enter',
-  Delete = 'Delete',
-  BackSpace = 'Backspace',
-  ArrowLeft = 'ArrowLeft',
-  ArrowRight = 'ArrowRight',
-}
+import TerminalEntry from '../TerminalEntry';
 
 type State = {
   caret: number;
-  chars: string[];
+  command: string[];
 }
 
+type Entry = {
+  command: string[];
+};
+
 const Terminal: React.FC = () => {
+  const terminalRef = useRef<HTMLDivElement>(null);
+  const [entries, setEntries] = useState<Entry[]>([]);
   const [state, setState] = useState<State>({
     caret: 0,
-    chars: [],
+    command: [],
   });
+
+  const scrollToBottom = () => {
+    if (terminalRef.current)
+      terminalRef.current.scrollTop = terminalRef.current.scrollHeight;
+  };
 
   useEffect(() => {
     const decCaret = () => {
@@ -33,7 +36,7 @@ const Terminal: React.FC = () => {
       });
     };
 
-    const incCaret = (limit = state.chars.length) => {
+    const incCaret = (limit = state.command.length) => {
       setState({
         ...state,
         caret: Math.min(limit, state.caret + 1)
@@ -50,60 +53,66 @@ const Terminal: React.FC = () => {
     const moveCaretToEnd = () => {
       setState({
         ...state,
-        caret: state.chars.length,
+        caret: state.command.length,
       });
     }
 
     const writeChar = (char: string) => {
-      const prefix = state.chars.filter((_, index) => index < state.caret);
-      const suffix = state.chars.filter((_, index) => index >= state.caret);
+      const prefix = state.command.filter((_, index) => index < state.caret);
+      const suffix = state.command.filter((_, index) => index >= state.caret);
 
       setState({
         caret: state.caret + 1,
-        chars: [...prefix, char, ...suffix],
+        command: [...prefix, char, ...suffix],
       });
     }
 
     const deleteChar = () => {
       setState({
         ...state,
-        chars: state.chars.filter((_, index) => index !== state.caret),
+        command: state.command.filter((_, index) => index !== state.caret),
       });
     };
 
     const deletePrevChar = () => {
       setState({
         caret: Math.max(0, state.caret - 1),
-        chars: state.chars.filter((_, index) => index !== (state.caret - 1)),
+        command: state.command.filter((_, index) => index !== (state.caret - 1)),
       });
     };
 
     const execCommand = () => {
-      const command = state.chars.join('');
-
-      console.log({ command });
+      setEntries([...entries, { command: state.command }])
+      setState({
+        command: [],
+        caret: 0,
+      });
     };
 
     const handleKeyDown = ({ key }: KeyboardEvent) => {
-      if (key === Keys.BackSpace)
+      if (key === Key.BackSpace)
         deletePrevChar()
-      else if (key === Keys.ArrowLeft)
+      else if (key === Key.ArrowLeft)
         decCaret();
-      else if (key === Keys.ArrowRight)
+      else if (key === Key.ArrowRight)
         incCaret();
-      else if (key === Keys.Home)
+      else if (key === Key.Home)
         moveCaretToStart();
-      else if (key === Keys.End)
+      else if (key === Key.End)
         moveCaretToEnd();
+      
+      scrollToBottom();
     };
     
     const handleKeyPress = ({ key }: KeyboardEvent) => {
-      if (key === Keys.Delete)
+      if (key === Key.Delete)
         deleteChar();
-      else if (key === Keys.Enter)
+      else if (key === Key.Enter)
         execCommand();
       else
         writeChar(key);
+      
+      scrollToBottom();
     };
     
     document.addEventListener('keydown', handleKeyDown);
@@ -113,14 +122,17 @@ const Terminal: React.FC = () => {
       document.removeEventListener('keydown', handleKeyDown);
       document.removeEventListener('keypress', handleKeyPress);
     };
-  }, [state]);
+  }, [state, entries]);
 
   return (
-    <Wrapper>
+    <Wrapper ref={terminalRef}>
       <Content>
         <TerminalHeader />
         <TerminalIntro />
-        <TerminalLine chars={state.chars} caret={state.caret} />
+        {entries.map((entry, index) => (
+          <TerminalEntry key={index} command={entry.command} />
+        ))}
+        <TerminalLine command={state.command} caret={state.caret} />
       </Content>
     </Wrapper>
   );

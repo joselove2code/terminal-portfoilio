@@ -1,10 +1,10 @@
 import React from 'react';
 import { Hightlight } from '../Highlight';
-import { Wrapper } from './styles';
+import { Wrapper, User } from './styles';
 
 const TerminalPrompt: React.FC = () => (
   <Wrapper>
-    <b>root@portfolio:</b>
+    <User>root@portfolio:</User>
     <Hightlight>~$</Hightlight>
   </Wrapper>
 );

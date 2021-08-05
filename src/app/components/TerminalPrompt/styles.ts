@@ -8,3 +8,7 @@ export const Wrapper = styled.span`
     background: var(--fontColor);
   }
 `;
+
+export const User = styled.b`
+  color: var(--fontColorLighten);
+`;

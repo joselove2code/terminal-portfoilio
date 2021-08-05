@@ -4,7 +4,6 @@ export const Wrapper = styled.header`
   white-space: pre;
   display: flex;
   flex-wrap: wrap;
-  margin-top: var(--marginTop);
   font-size: 8px;
 
   @media (min-width: 600px) {
