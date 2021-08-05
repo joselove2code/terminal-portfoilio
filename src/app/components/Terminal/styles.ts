@@ -10,6 +10,15 @@ export const Wrapper = styled.div`
   padding-top: var(--verticalMargin);  
   padding-bottom: var(--verticalMargin);  
   background-color: var(--backgroundColor);
+
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    border-radius: 2px;
+    background-color: gray;
+  }
 `;
 
 export const Content = styled.div`
