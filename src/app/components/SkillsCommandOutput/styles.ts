@@ -5,11 +5,7 @@ export const Wrapper = styled.div`
 `;
 
 export const CategoryWrapper = styled.div`
-  margin-top: calc(var(--lineHeight) * 2);
-  
-  :first-child {
-    margin-top: var(--lineHeight);
-  }
+  margin-top: var(--lineHeight);
 `;
 
 export const CategoryHeader = styled.div`
@@ -25,7 +21,7 @@ export const SkillWrapper = styled.div`
   max-width: 100%;
   display: flex;
   flex-wrap: wrap;
-  margin-top: var(--lineHeight);
+  margin-top: calc(var(--lineHeight) / 2);
 
   @media (min-width: 900px) {
     margin-right: 5ch;
