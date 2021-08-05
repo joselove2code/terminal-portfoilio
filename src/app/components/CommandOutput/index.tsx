@@ -2,6 +2,7 @@ import React from 'react';
 import { Command } from '../../types/Command';
 import HelpCommandOutput from '../HelpCommandOutput';
 import ContactCommandOutput from '../ContactCommandOutput';
+import SkillsCommandOutput from '../SkillsCommandOutput';
 
 type Props = { command: string };
 
@@ -15,6 +16,8 @@ const CommandOutput: React.FC<Props> = (props) => {
       return <HelpCommandOutput />;
     case Command.Contact:
       return <ContactCommandOutput />;
+    case Command.Skills:
+      return <SkillsCommandOutput />;
     default: 
       return <div> {command}: Command not found </div>;
   }
