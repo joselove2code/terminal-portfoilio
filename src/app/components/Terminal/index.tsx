@@ -1,10 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { Key } from '../../types/Key';
-import { Wrapper, Content } from './styles';
+import { Command } from '../../types/Command';
 import TerminalHeader from '../TerminalHeader';
 import TerminalIntro from '../TerminalIntro';
 import TerminalLine from '../TerminalLine';
 import TerminalEntry from '../TerminalEntry';
+import { Wrapper, Content } from './styles';
 
 type State = {
   caret: number;
@@ -82,7 +83,14 @@ const Terminal: React.FC = () => {
     };
 
     const execCommand = () => {
-      setEntries([...entries, { command: state.command }])
+      const command = state.command.join('').trim();
+      
+      if (command === Command.Clear) {
+        setEntries([]);
+      } else {
+        setEntries([...entries, { command: state.command }])
+      }
+
       setState({
         command: [],
         caret: 0,
