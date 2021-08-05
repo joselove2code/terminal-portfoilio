@@ -10,5 +10,10 @@ export const Wrapper = styled.span`
 `;
 
 export const User = styled.b`
+  display: none;
   color: var(--fontColorLighten);
+
+  @media (min-width: 600px) {
+    display: inline;
+  }
 `;
