@@ -23,7 +23,7 @@ type Category = {
 const SkillsCommandOutput: React.FC = () => {
   const categories: Category[] = [
     {
-      name: 'General knowlege',
+      name: 'General Knowledge',
       skills: [
         {
           name: 'Algorithms and Data Structures',
