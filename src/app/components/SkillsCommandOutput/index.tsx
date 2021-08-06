@@ -147,8 +147,11 @@ const SkillsCommandOutput: React.FC = () => {
         <CategoryWrapper key={name}>
           <CategoryHeader>
             {name}
-            <Hightlight block>{getHeaderLine(name)}</Hightlight>
+            <Hightlight block>
+              {getHeaderLine(name)}
+            </Hightlight>
           </CategoryHeader>
+
           <CategorySkills>
             {skills.map(({ name, level }) => (
               <SkillWrapper key={name}>
