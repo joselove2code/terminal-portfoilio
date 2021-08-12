@@ -136,7 +136,7 @@ const SkillsCommandOutput: React.FC = () => {
   const getLevelStr = (level: number) => {    
     return '#'.repeat(10).split('').map((ch, index) => {
       return index >= level
-        ? '.'
+        ? '-'
         : <Hightlight key={index}>{ch}</Hightlight>;
     });
   };
