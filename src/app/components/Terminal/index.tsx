@@ -6,6 +6,7 @@ import TerminalIntro from '../TerminalIntro';
 import TerminalLine from '../TerminalLine';
 import TerminalEntry from '../TerminalEntry';
 import { Wrapper, Content } from './styles';
+import MobileKeyboard from '../MobileKeyboard';
 
 type State = {
   caret: number;
@@ -125,7 +126,7 @@ const Terminal: React.FC = () => {
     
     document.addEventListener('keydown', handleKeyDown);
     document.addEventListener('keypress', handleKeyPress);
-
+    
     return () => {
       document.removeEventListener('keydown', handleKeyDown);
       document.removeEventListener('keypress', handleKeyPress);
@@ -142,6 +143,8 @@ const Terminal: React.FC = () => {
         ))}
         <TerminalLine command={state.command} caret={state.caret} />
       </Content>
+
+      <MobileKeyboard />
     </Wrapper>
   );
 };
