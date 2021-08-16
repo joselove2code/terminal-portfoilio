@@ -1,11 +1,16 @@
 import React, { useRef } from 'react';
 import { Button, Input, Wrapper } from './styles';
 
-const MobileKeyboard: React.FC = () => {
+type Props = {
+  onShowKeyboard: () => void,
+};
+
+const MobileKeyboard: React.FC<Props> = ({ onShowKeyboard }) => {
   const inputRef = useRef<HTMLInputElement>(null);
 
   const showKeyboard = () => {
     inputRef.current?.focus();
+    onShowKeyboard();
   };
 
   return (

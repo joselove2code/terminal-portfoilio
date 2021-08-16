@@ -144,7 +144,7 @@ const Terminal: React.FC = () => {
         <TerminalLine command={state.command} caret={state.caret} />
       </Content>
 
-      <MobileKeyboard />
+      <MobileKeyboard onShowKeyboard={scrollToBottom} />
     </Wrapper>
   );
 };
