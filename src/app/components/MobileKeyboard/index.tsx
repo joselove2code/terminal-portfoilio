@@ -10,7 +10,7 @@ const MobileKeyboard: React.FC<Props> = ({ onShowKeyboard }) => {
 
   const showKeyboard = () => {
     inputRef.current?.focus();
-    setTimeout(onShowKeyboard, 50);
+    setTimeout(onShowKeyboard, 100);
   };
 
   return (
